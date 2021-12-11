@@ -12,6 +12,12 @@
       
       
       
+        <tags>
+            
+            <tag> hide </tag>
+            
+        </tags>
+      
     </entry>
     
     
@@ -34,6 +40,8 @@
       
       
         <tags>
+            
+            <tag> hide </tag>
             
             <tag> 编程 </tag>
             
@@ -489,9 +497,9 @@
             
             <tag> 算法 </tag>
             
-            <tag> 数学 </tag>
-            
             <tag> DP </tag>
+            
+            <tag> 数学 </tag>
             
         </tags>
       
@@ -1403,43 +1411,6 @@
     
     
     <entry>
-      <title>Manacher</title>
-      <link href="/2021/07/21/Manacher/index/"/>
-      <url>/2021/07/21/Manacher/index/</url>
-      
-        <content type="html"><![CDATA[<h2 id="P3805-【模板】manacher-算法"><a href="https://www.luogu.com.cn/problem/P3805">P3805 【模板】manacher 算法</a></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> re register</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXn = <span class="number">1e7</span> + <span class="number">1e6</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[MAXn * <span class="number">2</span> + <span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> n, cntch;</span><br><span class="line"><span class="keyword">int</span> rad[MAXn * <span class="number">2</span> + <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Evarad</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">for</span> (re <span class="keyword">int</span> i = <span class="number">0</span>, l = <span class="number">0</span>, r = <span class="number">-1</span>; i &lt;= cntch; ++i) &#123;</span><br><span class="line">rad[i] = (i &gt; r) ? <span class="number">0</span> : <span class="built_in">min</span>(rad[l + r - i], r - i);</span><br><span class="line"><span class="keyword">while</span> (i - rad[i] &gt; <span class="number">0</span> &amp;&amp; i + rad[i] &lt; cntch &amp;&amp; str[i - rad[i] - <span class="number">1</span>] == str[i + rad[i] + <span class="number">1</span>]) &#123;</span><br><span class="line">++rad[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (i + rad[i] &gt; r) &#123;</span><br><span class="line">r = i + rad[i];</span><br><span class="line">l = i - rad[i];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">str[<span class="number">0</span>] = <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">ch = <span class="built_in">getchar</span>();</span><br><span class="line"><span class="keyword">if</span> (ch &lt; <span class="string">&#x27;a&#x27;</span> || ch &gt; <span class="string">&#x27;z&#x27;</span>) <span class="keyword">break</span>;</span><br><span class="line">str[++cntch] = ch; str[++cntch] = <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Evarad</span>();</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (re <span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= cntch; ++i) &#123;</span><br><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span>) &#123;</span><br><span class="line">ans = <span class="built_in">max</span>(ans, <span class="number">2</span> * (rad[i] / <span class="number">2</span>) + <span class="number">1</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">ans = <span class="built_in">max</span>(ans, <span class="number">2</span> * (rad[i] / <span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 </category>
-          
-          <category> 信息竞赛 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 编程 </tag>
-            
-            <tag> 代码 </tag>
-            
-            <tag> 信息竞赛 </tag>
-            
-            <tag> OI </tag>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 字符串 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>Splay</title>
       <link href="/2021/07/21/Splay/index/"/>
       <url>/2021/07/21/Splay/index/</url>
@@ -1502,6 +1473,43 @@
             <tag> OI </tag>
             
             <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Manacher</title>
+      <link href="/2021/07/21/Manacher/index/"/>
+      <url>/2021/07/21/Manacher/index/</url>
+      
+        <content type="html"><![CDATA[<h2 id="P3805-【模板】manacher-算法"><a href="https://www.luogu.com.cn/problem/P3805">P3805 【模板】manacher 算法</a></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> re register</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXn = <span class="number">1e7</span> + <span class="number">1e6</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">char</span> str[MAXn * <span class="number">2</span> + <span class="number">10</span>];</span><br><span class="line"><span class="keyword">int</span> n, cntch;</span><br><span class="line"><span class="keyword">int</span> rad[MAXn * <span class="number">2</span> + <span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Evarad</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="keyword">for</span> (re <span class="keyword">int</span> i = <span class="number">0</span>, l = <span class="number">0</span>, r = <span class="number">-1</span>; i &lt;= cntch; ++i) &#123;</span><br><span class="line">rad[i] = (i &gt; r) ? <span class="number">0</span> : <span class="built_in">min</span>(rad[l + r - i], r - i);</span><br><span class="line"><span class="keyword">while</span> (i - rad[i] &gt; <span class="number">0</span> &amp;&amp; i + rad[i] &lt; cntch &amp;&amp; str[i - rad[i] - <span class="number">1</span>] == str[i + rad[i] + <span class="number">1</span>]) &#123;</span><br><span class="line">++rad[i];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (i + rad[i] &gt; r) &#123;</span><br><span class="line">r = i + rad[i];</span><br><span class="line">l = i - rad[i];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">str[<span class="number">0</span>] = <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line"><span class="keyword">char</span> ch;</span><br><span class="line"><span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">ch = <span class="built_in">getchar</span>();</span><br><span class="line"><span class="keyword">if</span> (ch &lt; <span class="string">&#x27;a&#x27;</span> || ch &gt; <span class="string">&#x27;z&#x27;</span>) <span class="keyword">break</span>;</span><br><span class="line">str[++cntch] = ch; str[++cntch] = <span class="string">&#x27;#&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">Evarad</span>();</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (re <span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= cntch; ++i) &#123;</span><br><span class="line"><span class="keyword">if</span> (i % <span class="number">2</span>) &#123;</span><br><span class="line">ans = <span class="built_in">max</span>(ans, <span class="number">2</span> * (rad[i] / <span class="number">2</span>) + <span class="number">1</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">ans = <span class="built_in">max</span>(ans, <span class="number">2</span> * (rad[i] / <span class="number">2</span>));</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> 信息竞赛 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 编程 </tag>
+            
+            <tag> 代码 </tag>
+            
+            <tag> 信息竞赛 </tag>
+            
+            <tag> OI </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 字符串 </tag>
             
         </tags>
       
@@ -1798,6 +1806,41 @@
     
     
     <entry>
+      <title>树状数组</title>
+      <link href="/2021/07/21/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/index/"/>
+      <url>/2021/07/21/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/index/</url>
+      
+        <content type="html"><![CDATA[<h2 id="P3374-【模板】树状数组-1"><a href="https://www.luogu.com.cn/problem/P3374">P3374 【模板】树状数组 1</a></h2><h2 id="P3368-【模板】树状数组-2"><a href="https://www.luogu.com.cn/problem/P3368">P3368 【模板】树状数组 2</a></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> re register</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXn = <span class="number">5e5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;a)</span> </span>&#123;</span><br><span class="line"><span class="keyword">register</span> <span class="keyword">char</span> c;<span class="keyword">while</span> (c = <span class="built_in">getchar</span>(), (c &lt; <span class="string">&#x27;0&#x27;</span> || c &gt; <span class="string">&#x27;9&#x27;</span>) &amp;&amp; c != <span class="string">&#x27;-&#x27;</span>);<span class="keyword">register</span> <span class="keyword">bool</span> f = c == <span class="string">&#x27;-&#x27;</span>;<span class="keyword">register</span> T x = f ? <span class="number">0</span> : c - <span class="string">&#x27;0&#x27;</span>;<span class="keyword">while</span> (c = <span class="built_in">getchar</span>(), c &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + c - <span class="string">&#x27;0&#x27;</span>;&#125;a = f ? -x : x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, t[MAXn + <span class="number">10</span>];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) ((x) &amp; (-(x))</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BuildUseSum</span><span class="params">(<span class="keyword">int</span> *sum)</span> </span>&#123;</span><br><span class="line"><span class="keyword">for</span> (re <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">t[i] = sum[i] - sum[i - <span class="built_in">lowbit</span>(i)];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line"><span class="keyword">while</span> (p &lt;= n) &#123;</span><br><span class="line">t[p] += v;</span><br><span class="line">p += <span class="built_in">lowbit</span>(p);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">EvaSum</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (p) &#123;</span><br><span class="line">ans += t[p];</span><br><span class="line">p -= <span class="built_in">lowbit</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[MAXn + <span class="number">10</span>], m;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="built_in">read</span>(n), <span class="built_in">read</span>(m);</span><br><span class="line"><span class="keyword">for</span> (re <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line"><span class="built_in">read</span>(a[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">BuildUseSum</span>(a);</span><br><span class="line"><span class="keyword">for</span> (re <span class="keyword">int</span> i = <span class="number">1</span>, opt, x, y, k; i &lt;= m; ++i) &#123;</span><br><span class="line"><span class="built_in">read</span>(opt);</span><br><span class="line"><span class="built_in"><span class="keyword">switch</span></span> (opt) &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line"><span class="built_in">read</span>(x), <span class="built_in">read</span>(y), <span class="built_in">read</span>(k);</span><br><span class="line"><span class="built_in">Add</span>(x, k); <span class="built_in">Add</span>(y + <span class="number">1</span>, -k);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line"><span class="built_in">read</span>(x);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, <span class="built_in">EvaSum</span>(x));</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> 信息竞赛 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 编程 </tag>
+            
+            <tag> 代码 </tag>
+            
+            <tag> 信息竞赛 </tag>
+            
+            <tag> OI </tag>
+            
+            <tag> 数据结构 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>树的直径</title>
       <link href="/2021/07/21/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/index/"/>
       <url>/2021/07/21/%E6%A0%91%E7%9A%84%E7%9B%B4%E5%BE%84/index/</url>
@@ -1827,41 +1870,6 @@
             <tag> 算法 </tag>
             
             <tag> 图论 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>树状数组</title>
-      <link href="/2021/07/21/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/index/"/>
-      <url>/2021/07/21/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84/index/</url>
-      
-        <content type="html"><![CDATA[<h2 id="P3374-【模板】树状数组-1"><a href="https://www.luogu.com.cn/problem/P3374">P3374 【模板】树状数组 1</a></h2><h2 id="P3368-【模板】树状数组-2"><a href="https://www.luogu.com.cn/problem/P3368">P3368 【模板】树状数组 2</a></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> re register</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> int long long</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXn = <span class="number">5e5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="class"><span class="keyword">class</span> <span class="title">T</span>&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">read</span><span class="params">(T &amp;a)</span> </span>&#123;</span><br><span class="line"><span class="keyword">register</span> <span class="keyword">char</span> c;<span class="keyword">while</span> (c = <span class="built_in">getchar</span>(), (c &lt; <span class="string">&#x27;0&#x27;</span> || c &gt; <span class="string">&#x27;9&#x27;</span>) &amp;&amp; c != <span class="string">&#x27;-&#x27;</span>);<span class="keyword">register</span> <span class="keyword">bool</span> f = c == <span class="string">&#x27;-&#x27;</span>;<span class="keyword">register</span> T x = f ? <span class="number">0</span> : c - <span class="string">&#x27;0&#x27;</span>;<span class="keyword">while</span> (c = <span class="built_in">getchar</span>(), c &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;x = (x &lt;&lt; <span class="number">3</span>) + (x &lt;&lt; <span class="number">1</span>) + c - <span class="string">&#x27;0&#x27;</span>;&#125;a = f ? -x : x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, t[MAXn + <span class="number">10</span>];</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> lowbit(x) ((x) &amp; (-(x))</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">BuildUseSum</span><span class="params">(<span class="keyword">int</span> *sum)</span> </span>&#123;</span><br><span class="line"><span class="keyword">for</span> (re <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">t[i] = sum[i] - sum[i - <span class="built_in">lowbit</span>(i)];</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Add</span><span class="params">(<span class="keyword">int</span> p, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line"><span class="keyword">while</span> (p &lt;= n) &#123;</span><br><span class="line">t[p] += v;</span><br><span class="line">p += <span class="built_in">lowbit</span>(p);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">EvaSum</span><span class="params">(<span class="keyword">int</span> p)</span> </span>&#123;</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">while</span> (p) &#123;</span><br><span class="line">ans += t[p];</span><br><span class="line">p -= <span class="built_in">lowbit</span>(p);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> a[MAXn + <span class="number">10</span>], m;</span><br><span class="line"><span class="function"><span class="keyword">signed</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line"><span class="built_in">read</span>(n), <span class="built_in">read</span>(m);</span><br><span class="line"><span class="keyword">for</span> (re <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line"><span class="built_in">read</span>(a[i]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">BuildUseSum</span>(a);</span><br><span class="line"><span class="keyword">for</span> (re <span class="keyword">int</span> i = <span class="number">1</span>, opt, x, y, k; i &lt;= m; ++i) &#123;</span><br><span class="line"><span class="built_in">read</span>(opt);</span><br><span class="line"><span class="built_in"><span class="keyword">switch</span></span> (opt) &#123;</span><br><span class="line"><span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line"><span class="built_in">read</span>(x), <span class="built_in">read</span>(y), <span class="built_in">read</span>(k);</span><br><span class="line"><span class="built_in">Add</span>(x, k); <span class="built_in">Add</span>(y + <span class="number">1</span>, -k);</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line"><span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line"><span class="built_in">read</span>(x);</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%lld\n&quot;</span>, <span class="built_in">EvaSum</span>(x));</span><br><span class="line"><span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 </category>
-          
-          <category> 信息竞赛 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 编程 </tag>
-            
-            <tag> 代码 </tag>
-            
-            <tag> 信息竞赛 </tag>
-            
-            <tag> OI </tag>
-            
-            <tag> 数据结构 </tag>
             
         </tags>
       
@@ -2082,43 +2090,6 @@
     
     
     <entry>
-      <title>Exgcd求逆元</title>
-      <link href="/2021/06/07/Exgcd%E6%B1%82%E9%80%86%E5%85%83/index/"/>
-      <url>/2021/06/07/Exgcd%E6%B1%82%E9%80%86%E5%85%83/index/</url>
-      
-        <content type="html"><![CDATA[<h2 id="P3811-【模板】乘法逆元"><a href="https://www.luogu.com.cn/problem/P3811">P3811 【模板】乘法逆元</a></h2><p>此题不是求单个逆元的模板题，但可以用这道模板题检验这种求逆方法的正确性（没有WA）</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span>&amp; x, <span class="keyword">int</span>&amp; y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!b) &#123;</span><br><span class="line">        x = <span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> d = <span class="built_in">exgcd</span>(b, a % b, y, x);</span><br><span class="line">    y -= a / b * x;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inv</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> mod)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans, k;</span><br><span class="line">    <span class="built_in">exgcd</span>(n, mod, ans, k);</span><br><span class="line">    <span class="keyword">return</span> (ans % mod + mod) % mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 </category>
-          
-          <category> 信息竞赛 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 编程 </tag>
-            
-            <tag> 代码 </tag>
-            
-            <tag> 信息竞赛 </tag>
-            
-            <tag> OI </tag>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 数学 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>01背包</title>
       <link href="/2021/06/07/01%E8%83%8C%E5%8C%85/index/"/>
       <url>/2021/06/07/01%E8%83%8C%E5%8C%85/index/</url>
@@ -2148,6 +2119,43 @@
             <tag> 算法 </tag>
             
             <tag> DP </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Exgcd求逆元</title>
+      <link href="/2021/06/07/Exgcd%E6%B1%82%E9%80%86%E5%85%83/index/"/>
+      <url>/2021/06/07/Exgcd%E6%B1%82%E9%80%86%E5%85%83/index/</url>
+      
+        <content type="html"><![CDATA[<h2 id="P3811-【模板】乘法逆元"><a href="https://www.luogu.com.cn/problem/P3811">P3811 【模板】乘法逆元</a></h2><p>此题不是求单个逆元的模板题，但可以用这道模板题检验这种求逆方法的正确性（没有WA）</p><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">exgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span>&amp; x, <span class="keyword">int</span>&amp; y)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!b) &#123;</span><br><span class="line">        x = <span class="number">1</span>, y = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> a;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> d = <span class="built_in">exgcd</span>(b, a % b, y, x);</span><br><span class="line">    y -= a / b * x;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">inv</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> mod)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans, k;</span><br><span class="line">    <span class="built_in">exgcd</span>(n, mod, ans, k);</span><br><span class="line">    <span class="keyword">return</span> (ans % mod + mod) % mod;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> 信息竞赛 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 编程 </tag>
+            
+            <tag> 代码 </tag>
+            
+            <tag> 信息竞赛 </tag>
+            
+            <tag> OI </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 数学 </tag>
             
         </tags>
       
@@ -2339,43 +2347,6 @@
     
     
     <entry>
-      <title>哈希</title>
-      <link href="/2021/06/07/%E5%93%88%E5%B8%8C/index/"/>
-      <url>/2021/06/07/%E5%93%88%E5%B8%8C/index/</url>
-      
-        <content type="html"><![CDATA[<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MOD = <span class="number">2333</span>;</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>, num, mo;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; hash[MOD + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">    mo = a % MOD;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; hash[mo].<span class="built_in">size</span>(); i++)</span><br><span class="line">        <span class="keyword">if</span> (hash[mo][i] == a)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">    ans++;</span><br><span class="line">    hash[mo].<span class="built_in">push_back</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a), <span class="built_in">insert</span>(a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 </category>
-          
-          <category> 信息竞赛 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 编程 </tag>
-            
-            <tag> 代码 </tag>
-            
-            <tag> 信息竞赛 </tag>
-            
-            <tag> OI </tag>
-            
-            <tag> 算法 </tag>
-            
-            <tag> 数据结构 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>埃氏筛</title>
       <link href="/2021/06/07/%E5%9F%83%E6%B0%8F%E7%AD%9B/index/"/>
       <url>/2021/06/07/%E5%9F%83%E6%B0%8F%E7%AD%9B/index/</url>
@@ -2405,6 +2376,43 @@
             <tag> 算法 </tag>
             
             <tag> 数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>哈希</title>
+      <link href="/2021/06/07/%E5%93%88%E5%B8%8C/index/"/>
+      <url>/2021/06/07/%E5%93%88%E5%B8%8C/index/</url>
+      
+        <content type="html"><![CDATA[<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MOD = <span class="number">2333</span>;</span><br><span class="line"><span class="keyword">int</span> ans = <span class="number">0</span>, num, mo;</span><br><span class="line">vector&lt;<span class="keyword">int</span>&gt; hash[MOD + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="keyword">int</span> a)</span> </span>&#123;</span><br><span class="line">    mo = a % MOD;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; hash[mo].<span class="built_in">size</span>(); i++)</span><br><span class="line">        <span class="keyword">if</span> (hash[mo][i] == a)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">    ans++;</span><br><span class="line">    hash[mo].<span class="built_in">push_back</span>(a);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">int</span> a;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; i++)</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">&quot;%d&quot;</span>, &amp;a), <span class="built_in">insert</span>(a);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>, ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> 信息竞赛 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 编程 </tag>
+            
+            <tag> 代码 </tag>
+            
+            <tag> 信息竞赛 </tag>
+            
+            <tag> OI </tag>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 数据结构 </tag>
             
         </tags>
       
@@ -2561,41 +2569,6 @@
     
     
     <entry>
-      <title>快速排序</title>
-      <link href="/2021/06/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/index/"/>
-      <url>/2021/06/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/index/</url>
-      
-        <content type="html"><![CDATA[<h2 id="P1177-【模板】快速排序"><a href="https://www.luogu.com.cn/problem/P1177">P1177 【模板】快速排序</a></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXn = <span class="number">100000</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line">    <span class="keyword">while</span> (c = <span class="built_in">getchar</span>(), c &lt; <span class="string">&#x27;0&#x27;</span> || c &gt; <span class="string">&#x27;9&#x27;</span>);</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">x</span><span class="params">(c - <span class="string">&#x27;0&#x27;</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span> (c = <span class="built_in">getchar</span>(), c &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">        x = x * <span class="number">10</span> + c - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[MAXn + <span class="number">10</span>];</span><br><span class="line"><span class="keyword">void</span> _QuickSort_(<span class="keyword">int</span>* a, <span class="keyword">int</span> l, <span class="keyword">int</span> r) &#123;</span><br><span class="line">    <span class="keyword">int</span> i = l, j = r, f = a[(l + r) / <span class="number">2</span>];</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (a[i] &lt; f) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (a[j] &gt; f) &#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &lt;= j) &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = a[i];</span><br><span class="line">            a[i] = a[j];</span><br><span class="line">            a[j] = tmp;</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (i &lt;= j);</span><br><span class="line">    <span class="keyword">if</span> (l &lt; j) &#123;</span><br><span class="line">        _QuickSort_(a, l, j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; r) &#123;</span><br><span class="line">        _QuickSort_(a, i, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span>* a, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    _QuickSort_(a, l, r - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n = <span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        a[i] = <span class="built_in">read</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">QuickSort</span>(a, <span class="number">0</span>, n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 编程 </category>
-          
-          <category> 信息竞赛 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 编程 </tag>
-            
-            <tag> 代码 </tag>
-            
-            <tag> 信息竞赛 </tag>
-            
-            <tag> OI </tag>
-            
-            <tag> 算法 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>快速幂</title>
       <link href="/2021/06/07/%E5%BF%AB%E9%80%9F%E5%B9%82/index/"/>
       <url>/2021/06/07/%E5%BF%AB%E9%80%9F%E5%B9%82/index/</url>
@@ -2625,6 +2598,41 @@
             <tag> 算法 </tag>
             
             <tag> 数学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>快速排序</title>
+      <link href="/2021/06/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/index/"/>
+      <url>/2021/06/07/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/index/</url>
+      
+        <content type="html"><![CDATA[<h2 id="P1177-【模板】快速排序"><a href="https://www.luogu.com.cn/problem/P1177">P1177 【模板】快速排序</a></h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXn = <span class="number">100000</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">int</span> <span class="title">read</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> c;</span><br><span class="line">    <span class="keyword">while</span> (c = <span class="built_in">getchar</span>(), c &lt; <span class="string">&#x27;0&#x27;</span> || c &gt; <span class="string">&#x27;9&#x27;</span>);</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">x</span><span class="params">(c - <span class="string">&#x27;0&#x27;</span>)</span></span>;</span><br><span class="line">    <span class="keyword">while</span> (c = <span class="built_in">getchar</span>(), c &gt;= <span class="string">&#x27;0&#x27;</span> &amp;&amp; c &lt;= <span class="string">&#x27;9&#x27;</span>) &#123;</span><br><span class="line">        x = x * <span class="number">10</span> + c - <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> a[MAXn + <span class="number">10</span>];</span><br><span class="line"><span class="keyword">void</span> _QuickSort_(<span class="keyword">int</span>* a, <span class="keyword">int</span> l, <span class="keyword">int</span> r) &#123;</span><br><span class="line">    <span class="keyword">int</span> i = l, j = r, f = a[(l + r) / <span class="number">2</span>];</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        <span class="keyword">while</span> (a[i] &lt; f) &#123;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (a[j] &gt; f) &#123;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (i &lt;= j) &#123;</span><br><span class="line">            <span class="keyword">int</span> tmp = a[i];</span><br><span class="line">            a[i] = a[j];</span><br><span class="line">            a[j] = tmp;</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">while</span> (i &lt;= j);</span><br><span class="line">    <span class="keyword">if</span> (l &lt; j) &#123;</span><br><span class="line">        _QuickSort_(a, l, j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; r) &#123;</span><br><span class="line">        _QuickSort_(a, i, r);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">QuickSort</span><span class="params">(<span class="keyword">int</span>* a, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    _QuickSort_(a, l, r - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    n = <span class="built_in">read</span>();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        a[i] = <span class="built_in">read</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">QuickSort</span>(a, <span class="number">0</span>, n);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, a[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      
+      
+      <categories>
+          
+          <category> 编程 </category>
+          
+          <category> 信息竞赛 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 编程 </tag>
+            
+            <tag> 代码 </tag>
+            
+            <tag> 信息竞赛 </tag>
+            
+            <tag> OI </tag>
+            
+            <tag> 算法 </tag>
             
         </tags>
       
@@ -3280,9 +3288,9 @@
             
             <tag> 算法 </tag>
             
-            <tag> 数学 </tag>
-            
             <tag> 数据结构 </tag>
+            
+            <tag> 数学 </tag>
             
         </tags>
       
